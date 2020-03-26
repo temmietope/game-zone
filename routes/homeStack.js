@@ -1,13 +1,17 @@
 import { createStackNavigator } from "react-navigation-stack";
 import Home from "../screens/home";
 import ReviewDetails from "../screens/reviewDetails";
+import Header from "../shared/header";
+import React from "react";
 
 const screens = {
   Home: {
     screen: Home,
-    navigationOptions: {
-      title: "GameZone",
-      headerStyle: { backgroundColor: "#333" }
+    navigationOptions: ({ navigation }) => {
+      return {
+        headerTitle: () => <Header navigation={navigation} title="GameZone" />,
+        headerTitleAlign: "center"
+      };
     }
   },
   ReviewDetails: {
@@ -22,7 +26,7 @@ const screens = {
 const HomeStack = createStackNavigator(screens, {
   defaultNavigationOptions: {
     headerTintColor: "#444",
-    headerStyle: { backgroundColor: "#ccc" }
+    headerStyle: { backgroundColor: "#ccc", height: 100 }
   }
 });
 
